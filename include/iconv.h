@@ -24,9 +24,17 @@
 #define _LIBICONV_VERSION 0x010E    /* version number: (major<<8) + minor */
 
 #if 1 && BUILDING_LIBICONV
-#define LIBICONV_DLL_EXPORTED __attribute__((__visibility__("default")))
+# ifdef _MSC_VER
+#  define LIBICONV_DLL_EXPORTED __declspec(dllexport)
+# else // _MSC_VER
+#  define LIBICONV_DLL_EXPORTED __attribute__((__visibility__("default")))
+# endif // !_MSC_VER
 #else
-#define LIBICONV_DLL_EXPORTED
+# ifdef _MSC_VER
+#  define LIBICONV_DLL_EXPORTED __declspec(dllimport)
+# else // _MSC_VER
+#  define LIBICONV_DLL_EXPORTED
+# endif // !_MSC_VER
 #endif
 extern LIBICONV_DLL_EXPORTED __declspec (dllimport) int _libiconv_version; /* Likewise */
 
