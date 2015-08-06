@@ -30,12 +30,9 @@
 #  define LIBICONV_DLL_EXPORTED __attribute__((__visibility__("default")))
 # endif // !_MSC_VER
 #else
-# ifdef _MSC_VER
-#  define LIBICONV_DLL_EXPORTED __declspec(dllimport)
-# else // _MSC_VER
-#  define LIBICONV_DLL_EXPORTED
-# endif // !_MSC_VER
+#define LIBICONV_DLL_EXPORTED
 #endif
+
 extern LIBICONV_DLL_EXPORTED __declspec (dllimport) int _libiconv_version; /* Likewise */
 
 /* We would like to #include any system header file which could define
@@ -84,7 +81,7 @@ extern "C" {
 #ifndef LIBICONV_PLUG
 #define iconv_open libiconv_open
 #endif
-extern LIBICONV_DLL_EXPORTED iconv_t iconv_open (const char* tocode, const char* fromcode);
+LIBICONV_DLL_EXPORTED iconv_t iconv_open (const char* tocode, const char* fromcode);
 
 /* Converts, using conversion descriptor ‘cd’, at most ‘*inbytesleft’ bytes
    starting at ‘*inbuf’, writing at most ‘*outbytesleft’ bytes starting at

@@ -2,3 +2,7 @@
 **/Debug DLL/
 **/Release DLL/
 **/Release/
+**/Debug Static/
+*.user
+**/Release Static/
+*.aps
